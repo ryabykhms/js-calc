@@ -151,6 +151,21 @@ h6 {
   grid-template-columns: repeat(7, 1fr);
 }
 
-.panel__button {
+/*
+ * Buttons styles
+ */
+
+.button {
   font-size: 1.3rem;
+  background-color: #fff;
+}
+
+.button:nth-child(7n-6),
+.button:nth-child(7n-5),
+.button:nth-child(7n-4) {
+  background-color: #ddd;
+}
+
+.button:nth-child(7n) {
+  background-color: rgb(255, 253, 147);
 }
