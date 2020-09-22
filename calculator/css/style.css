@@ -90,3 +90,67 @@ h6 {
   font-size: inherit;
   font-weight: 400;
 }
+
+/*
+ * Layout styles
+ */
+
+.body {
+  background-image: linear-gradient(to right, #aa0000, #0000aa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calculator {
+  display: grid;
+  grid-template-areas:
+    "display display display display display display display"
+    "panel panel panel panel panel panel panel";
+  grid-template-rows: 1fr 3fr;
+  grid-template-columns: repeat(7, 1fr);
+  overflow: hidden;
+  width: 50%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.display {
+  display: flex;
+  grid-area: display;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.display__result {
+  width: 100%;
+  height: 30px;
+  font-size: 1.5rem;
+  text-align: right;
+}
+
+.display__result:hover {
+  cursor: pointer;
+}
+
+.display__input {
+  width: 100%;
+  height: 30px;
+  font-size: 2rem;
+  text-align: right;
+  background-color: transparent;
+}
+
+.panel {
+  display: grid;
+  grid-area: panel;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.panel__button {
+  font-size: 1.3rem;
+}
