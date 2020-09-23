@@ -32,6 +32,16 @@ const inverseNumber = (str) => {
   return result;
 };
 
+const hyperbola = (str) => {
+  let result = str;
+  if (str.indexOf('1/(') === 0 && str.charAt(str.length - 1) === ')') {
+    result = str.substr(3, str.length - 4);
+  } else {
+    result = '1/(' + str + ')';
+  }
+  return result;
+}
+
 const buttons = document.querySelectorAll(".button");
 const displayResult = document.querySelector(".display__result");
 const displayInput = document.querySelector(".display__input");
@@ -85,7 +95,8 @@ buttons.forEach((button) => {
           btnOperation = "sin(";
           break;
         case "hyperbola":
-          btnOperation = "1/x";
+          btnOperation = "";
+          displayInput.value = hyperbola(displayInput.value)
           break;
         case "mult":
           btnOperation = "*";
