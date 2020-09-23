@@ -159,3 +159,56 @@ buttons.forEach((button) => {
     displayResult.innerHTML = calculator.calculate(displayInput.value);
   });
 });
+
+const handleInput = input => {
+  const lastOperator = input.target.value.toString().slice(-1);
+  let current = input.target.value.toString();
+  let result = displayResult.value;
+  console.log(input);
+
+  if (lastOperator === '=') {
+    current = current.substr(0, current.length - 1);
+  }
+  if (lastOperator === '=' || input.key === 'Enter' || input.keyCode === 13) {
+    const resultCalc = calculator.calculate(current);
+    if (resultCalc !== 'Error') {
+      current = resultCalc;
+      result = resultCalc;
+    }
+  } else {
+    const resultCalc = calculator.calculate(result);
+    if (resultCalc !== 'Error') {
+      result = resultCalc;
+    }
+  }
+  displayInput.value = current;
+  displayResult.innerHTML = result;
+}
+displayInput.onkeypress = displayInput.oninput = handleInput;
+
+// displayInput.addEventListener('input', input => {
+//   const lastOperator = input.target.value.toString().slice(-1);
+//   let current = input.target.value.toString();
+//   let result = displayResult.value;
+//   console.log(input);
+//   if (lastOperator === '=') {
+//     current = current.substr(0, current.length - 1);
+//     const resultCalc = calculator.calculate(current);
+//     if (resultCalc !== 'Error') {
+//       current = resultCalc;
+//       result = resultCalc;
+//     }
+//   } else {
+//     const resultCalc = calculator.calculate(result);
+//     if (resultCalc !== 'Error') {
+//       result = resultCalc;
+//     }
+//   }
+//   displayInput.value = current;
+//   displayResult.value = result;
+// });
+
+// displayInput.addEventListener('enter', input => {
+//   console.log(input);
+
+// });
