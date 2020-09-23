@@ -104,7 +104,8 @@ buttons.forEach((button) => {
           break;
         case "eq":
           btnOperation = "";
-          const countMissed = bracketsCount.countOpen - bracketsCount.countClose;
+          const countMissed =
+            bracketsCount.countOpen - bracketsCount.countClose;
           for (let i = 0; i < countMissed; i++) {
             displayInput.value += ")";
           }
