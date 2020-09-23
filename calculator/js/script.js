@@ -55,10 +55,10 @@ buttons.forEach((button) => {
           btnOperation = "/";
           break;
         case "asin":
-          btnOperation = "asin";
+          btnOperation = "asin(";
           break;
         case "sin":
-          btnOperation = "sin";
+          btnOperation = "sin(";
           break;
         case "hyperbola":
           btnOperation = "1/x";
@@ -67,31 +67,31 @@ buttons.forEach((button) => {
           btnOperation = "*";
           break;
         case "acos":
-          btnOperation = "acos";
+          btnOperation = "acos(";
           break;
         case "cos":
-          btnOperation = "cos";
+          btnOperation = "cos(";
           break;
         case "sqrt":
-          btnOperation = "sqrt";
+          btnOperation = "sqrt(";
           break;
         case "minus":
           btnOperation = "-";
           break;
         case "atan":
-          btnOperation = "atan";
+          btnOperation = "atan(";
           break;
         case "tan":
-          btnOperation = "tan";
+          btnOperation = "tan(";
           break;
         case "ln":
-          btnOperation = "ln";
+          btnOperation = "ln(";
           break;
         case "plus":
           btnOperation = "+";
           break;
         case "lg":
-          btnOperation = "lg";
+          btnOperation = "lg(";
           break;
         case "pi":
           btnOperation = "PI";
