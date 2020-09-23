@@ -161,6 +161,10 @@ h6 {
   background-color: #fff;
 }
 
+.button:hover {
+  opacity: 0.9;
+}
+
 .button:nth-child(7n-6),
 .button:nth-child(7n-5),
 .button:nth-child(7n-4) {
