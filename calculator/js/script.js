@@ -1,5 +1,14 @@
 const calculator = new Calculator();
 
+const countBrackets = (str) => {
+  const countOpen = str !== null ? str.split("(").length - 1 : 0;
+  const countClose = str !== null ? str.split(")").length - 1 : 0;
+  return {
+    countOpen,
+    countClose,
+  };
+};
+
 const buttons = document.querySelectorAll(".button");
 const displayResult = document.querySelector(".display__result");
 const displayInput = document.querySelector(".display__input");
@@ -9,6 +18,7 @@ buttons.forEach((button) => {
     if (displayInput.value === "Error!") {
       displayInput.value = "";
     }
+    const bracketsCount = countBrackets(displayInput.value);
     if (btn.target.hasAttribute("data-operation")) {
       const operation = btn.target.getAttribute("data-operation");
       switch (operation) {
@@ -26,7 +36,16 @@ buttons.forEach((button) => {
           displayInput.value = "";
           break;
         case "bracket":
-          btnOperation = "(";
+          btnOperation = "";
+          const lastChar = displayInput.value.slice(-1);
+          displayInput.value =
+            /\D/.test(lastChar) && lastChar !== ")"
+              ? displayInput.value + "("
+              : bracketsCount.countOpen > bracketsCount.countClose
+              ? displayInput.value + ")"
+              : bracketsCount.countOpen === bracketsCount.countClose
+              ? displayInput.value + "("
+              : displayInput.value;
           break;
         case "del":
           btnOperation = "";
@@ -85,13 +104,16 @@ buttons.forEach((button) => {
           break;
         case "eq":
           btnOperation = "";
+          const countMissed = bracketsCount.countOpen - bracketsCount.countClose;
+          for (let i = 0; i < countMissed; i++) {
+            displayInput.value += ")";
+          }
           const result = calculator.calculate(displayInput.value);
           if (result === "") {
             displayInput.value = "Error!";
           } else {
             displayInput.value = result;
           }
-
           break;
       }
     } else {
