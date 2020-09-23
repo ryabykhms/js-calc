@@ -6,6 +6,9 @@ const displayInput = document.querySelector(".display__input");
 buttons.forEach((button) => {
   button.addEventListener("click", (btn) => {
     let btnOperation = "";
+    if (displayInput.value === "Error!") {
+      displayInput.value = "";
+    }
     if (btn.target.hasAttribute("data-operation")) {
       const operation = btn.target.getAttribute("data-operation");
       switch (operation) {
@@ -83,12 +86,18 @@ buttons.forEach((button) => {
         case "eq":
           btnOperation = "";
           const result = calculator.calculate(displayInput.value);
-          displayInput.value = result;
+          if (result === "") {
+            displayInput.value = "Error!";
+          } else {
+            displayInput.value = result;
+          }
+
           break;
       }
     } else {
       btnOperation = btn.target.innerText;
     }
     displayInput.value = displayInput.value + btnOperation;
+    displayResult.innerHTML = calculator.calculate(displayInput.value);
   });
 });
