@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculator</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/script.js" defer></script>
 </head>
 <body class="body">
   <div id="calculator" class="calculator">
@@ -51,5 +50,19 @@
       <button class="panel__button button" data-operation="eq">=</button>
     </div>
   </div>
+  <script src="js/parser/Constants.js"></script>
+  <script src="js/parser/Functions.js"></script>
+  <script src="js/parser/expressions/Expression.js"></script>
+  <script src="js/parser/expressions/UnaryExpression.js"></script>
+  <script src="js/parser/expressions/BinaryExpression.js"></script>
+  <script src="js/parser/expressions/NumberExpression.js"></script>
+  <script src="js/parser/expressions/ConstantExpression.js"></script>
+  <script src="js/parser/expressions/FunctionalExpression.js"></script>
+  <script src="js/parser/Token.js"></script>
+  <script src="js/parser/TokenType.js"></script>
+  <script src="js/parser/Lexer.js"></script>
+  <script src="js/parser/Parser.js"></script>
+  <script src="js/Calculator.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
