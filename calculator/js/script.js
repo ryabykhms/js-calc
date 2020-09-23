@@ -9,6 +9,29 @@ const countBrackets = (str) => {
   };
 };
 
+const inverseNumber = (str) => {
+  let result = str;
+  if (str.charAt(0) === "-") {
+    if (/^-\d+$/.test(str) === false) {
+      if (/^-\(.+\)$/.test(str) === true) {
+        result = str.slice(2, str.length - 1);
+      } else {
+        result = "-(" + str + ")";
+      }
+    } else {
+      result = str.slice(1);
+    }
+  } else if (str !== "") {
+    if (/^\d+$/.test(str) === false) {
+      result = "-(" + str + ")";
+    } else {
+      result = "-" + str + "";
+    }
+  }
+  console.log(result);
+  return result;
+};
+
 const buttons = document.querySelectorAll(".button");
 const displayResult = document.querySelector(".display__result");
 const displayInput = document.querySelector(".display__input");
@@ -29,7 +52,8 @@ buttons.forEach((button) => {
           btnOperation = "!";
           break;
         case "inv":
-          btnOperation = "-";
+          btnOperation = "";
+          displayInput.value = inverseNumber(displayInput.value);
           break;
         case "clear":
           btnOperation = "";
