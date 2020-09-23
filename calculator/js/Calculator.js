@@ -9,9 +9,12 @@ class Calculator {
       expressions.forEach((expression) => {
         result = expression.evaluate();
       });
+      if (Number.isNaN(result)) {
+        result = "";
+      }
       return result;
     } catch (error) {
-      return '';
+      return "";
     }
   }
 }
