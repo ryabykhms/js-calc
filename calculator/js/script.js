@@ -72,10 +72,10 @@ buttons.forEach((button) => {
           btnOperation = "lg";
           break;
         case "pi":
-          btnOperation = Math.PI.toString();
+          btnOperation = "PI";
           break;
         case "e":
-          btnOperation = Math.E.toString();
+          btnOperation = "E";
           break;
         case "percent":
           btnOperation = "%";
