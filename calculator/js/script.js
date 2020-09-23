@@ -28,19 +28,18 @@ const inverseNumber = (str) => {
       result = "-" + str + "";
     }
   }
-  console.log(result);
   return result;
 };
 
 const hyperbola = (str) => {
   let result = str;
-  if (str.indexOf('1/(') === 0 && str.charAt(str.length - 1) === ')') {
+  if (str.indexOf("1/(") === 0 && str.charAt(str.length - 1) === ")") {
     result = str.substr(3, str.length - 4);
   } else {
-    result = '1/(' + str + ')';
+    result = "1/(" + str + ")";
   }
   return result;
-}
+};
 
 const buttons = document.querySelectorAll(".button");
 const displayResult = document.querySelector(".display__result");
@@ -96,7 +95,7 @@ buttons.forEach((button) => {
           break;
         case "hyperbola":
           btnOperation = "";
-          displayInput.value = hyperbola(displayInput.value)
+          displayInput.value = hyperbola(displayInput.value);
           break;
         case "mult":
           btnOperation = "*";
@@ -160,55 +159,27 @@ buttons.forEach((button) => {
   });
 });
 
-const handleInput = input => {
+const handleInput = (input) => {
   const lastOperator = input.target.value.toString().slice(-1);
   let current = input.target.value.toString();
   let result = displayResult.value;
-  console.log(input);
 
-  if (lastOperator === '=') {
+  if (lastOperator === "=") {
     current = current.substr(0, current.length - 1);
   }
-  if (lastOperator === '=' || input.key === 'Enter' || input.keyCode === 13) {
+  if (lastOperator === "=" || input.key === "Enter" || input.keyCode === 13) {
     const resultCalc = calculator.calculate(current);
-    if (resultCalc !== 'Error') {
+    if (resultCalc !== "Error") {
       current = resultCalc;
       result = resultCalc;
     }
   } else {
     const resultCalc = calculator.calculate(result);
-    if (resultCalc !== 'Error') {
+    if (resultCalc !== "Error") {
       result = resultCalc;
     }
   }
   displayInput.value = current;
   displayResult.innerHTML = result;
-}
+};
 displayInput.onkeypress = displayInput.oninput = handleInput;
-
-// displayInput.addEventListener('input', input => {
-//   const lastOperator = input.target.value.toString().slice(-1);
-//   let current = input.target.value.toString();
-//   let result = displayResult.value;
-//   console.log(input);
-//   if (lastOperator === '=') {
-//     current = current.substr(0, current.length - 1);
-//     const resultCalc = calculator.calculate(current);
-//     if (resultCalc !== 'Error') {
-//       current = resultCalc;
-//       result = resultCalc;
-//     }
-//   } else {
-//     const resultCalc = calculator.calculate(result);
-//     if (resultCalc !== 'Error') {
-//       result = resultCalc;
-//     }
-//   }
-//   displayInput.value = current;
-//   displayResult.value = result;
-// });
-
-// displayInput.addEventListener('enter', input => {
-//   console.log(input);
-
-// });
