@@ -1,3 +1,5 @@
+const calculator = new Calculator();
+
 const buttons = document.querySelectorAll(".button");
 const displayResult = document.querySelector(".display__result");
 const displayInput = document.querySelector(".display__input");
@@ -80,6 +82,8 @@ buttons.forEach((button) => {
           break;
         case "eq":
           btnOperation = "";
+          const result = calculator.calculate(displayInput.value);
+          displayInput.value = result;
           break;
       }
     } else {
