@@ -157,7 +157,7 @@ h6 {
  */
 
 .button {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   background-color: #fff;
 }
 
@@ -169,4 +169,5 @@ h6 {
 
 .button:nth-child(7n) {
   background-color: rgb(255, 253, 147);
+  font-size: 2rem;
 }
