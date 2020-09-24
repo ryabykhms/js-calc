@@ -22,7 +22,7 @@ class Lexer {
   tokenize() {
     while (this.pos < this.length) {
       const current = this.peek(0);
-      if (this.isNumber(current)) {
+      if (this.isNumber(current) || current === '.') {
         this.tokenizeNumber();
       } else if (this.isLetter(current)) {
         this.tokenizeWord();
@@ -45,6 +45,9 @@ class Lexer {
       if (current === ".") {
         if (buffer.indexOf(".") !== -1) {
           throw new Error("Invalid float number");
+        }
+        if (buffer === "") {
+          buffer = "0";
         }
       } else if (!this.isNumber(current)) {
         break;
