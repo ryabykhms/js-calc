@@ -135,13 +135,6 @@ buttons.forEach((button) => {
       case "percent":
         btnOperation = "%";
         break;
-      case "dot":
-        if (displayInput.value.indexOf(".") !== -1) {
-          btnOperation = "";
-        } else {
-          btnOperation = ".";
-        }
-        break;
       case "eq":
         btnOperation = "";
         const countMissed = bracketsCount.countOpen - bracketsCount.countClose;
@@ -167,12 +160,6 @@ buttons.forEach((button) => {
 const handleInput = (input) => {
   displayInput.value = displayInput.value.toLowerCase();
   const lastOperator = input.target.value.toString().slice(-1);
-  if (
-    lastOperator === "." &&
-    displayInput.value.slice(0, -1).indexOf(".") !== -1
-  ) {
-    displayInput.value = displayInput.value.slice(0, -1);
-  }
   let current = input.target.value.toString();
   let result = displayResult.value;
 
