@@ -11,6 +11,8 @@ class Calculator {
       });
       if (Number.isNaN(result)) {
         result = "";
+      } else {
+        result = parseFloat(result.toFixed(10)).toString();
       }
       return result;
     } catch (error) {
