@@ -163,13 +163,17 @@ const handleInput = (input) => {
     displayInput.value = "";
   }
   const lastOperator = input.target.value.toString().slice(-1);
+  const equalPosition = input.target.value.toString().indexOf("=");
   let current = input.target.value.toString();
   let result = displayResult.value;
 
   if (lastOperator === "=") {
     current = current.substr(0, current.length - 1);
   }
-  if (lastOperator === "=" || input.key === "Enter" || input.keyCode === 13) {
+  if (equalPosition !== -1) {
+    current = current.slice(0, equalPosition) + current.slice(equalPosition+1);
+  }
+  if (lastOperator === "=" || input.key === "Enter" || input.keyCode === 13 || equalPosition !== -1) {
     const resultCalc = calculator.calculate(current);
     if (resultCalc !== "Error") {
       current = resultCalc;
