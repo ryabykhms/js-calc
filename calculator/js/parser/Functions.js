@@ -19,6 +19,7 @@ class Functions {
     cbrt: args => Functions.execFunction(Math.cbrt, args),
     exp: args => Functions.execFunction(Math.exp, args),
     ln: args => Functions.execFunction(Math.log, args),
+    lg: args => Functions.execFunction(Math.log10, args),
     log10: args => Functions.execFunction(Math.log10, args),
     log2: args => Functions.execFunction(Math.log2, args),
     pow: args => Functions.execFunction(Math.pow, args),
