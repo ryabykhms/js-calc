@@ -51,8 +51,7 @@ buttons.forEach((button) => {
       displayInput.value = "";
     }
     const bracketsCount = countBrackets(displayInput.value);
-    if (btn.target.hasAttribute("data-operation")) {
-      const operation = btn.target.getAttribute("data-operation");
+    const operation = btn.target.getAttribute("data-operation");
       switch (operation) {
         case "pow":
           btnOperation = "^";
@@ -157,10 +156,10 @@ buttons.forEach((button) => {
             displayInput.value = result;
           }
           break;
+          default:
+            btnOperation = btn.target.innerText;
+            break;
       }
-    } else {
-      btnOperation = btn.target.innerText;
-    }
     displayInput.value = displayInput.value + btnOperation;
     displayResult.innerHTML = calculator.calculate(displayInput.value);
   });
