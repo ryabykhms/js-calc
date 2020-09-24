@@ -26,18 +26,10 @@ class Parser {
   }
 
   expression() {
-    return this.fact();
+    return this.additive();
   }
 
-  fact() {
-    const result = this.additive();
-    if (this.match(TokenType.FACT)) {
-      const functionalExpression = new FunctionalExpression('fact');
-      functionalExpression.addArgument(result);
-      return functionalExpression;
-    }
-    return result;
-  }
+
 
   additive() {
     let result = this.multiplicative();
@@ -94,13 +86,23 @@ class Parser {
   }
 
   power() {
-    let result = this.unary();
+    let result = this.fact();
     while (true) {
       if (this.match(TokenType.POW)) {
-        result = new BinaryExpression('^', result, this.unary());
+        result = new BinaryExpression('^', result, this.fact());
         continue;
       }
       break;
+    }
+    return result;
+  }
+
+  fact() {
+    const result = this.unary();
+    if (this.match(TokenType.FACT)) {
+      const functionalExpression = new FunctionalExpression('fact');
+      functionalExpression.addArgument(result);
+      return functionalExpression;
     }
     return result;
   }
