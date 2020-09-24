@@ -14,6 +14,7 @@ class Calculator {
       } else {
         result = parseFloat(result.toFixed(10)).toString();
       }
+      result = result.toString().replace(/([0-9.]+)e\+/, "$1*10^");
       return result;
     } catch (error) {
       return "";
