@@ -52,114 +52,113 @@ buttons.forEach((button) => {
     }
     const bracketsCount = countBrackets(displayInput.value);
     const operation = btn.target.getAttribute("data-operation");
-      switch (operation) {
-        case "pow":
-          btnOperation = "^";
-          break;
-        case "fact":
-          btnOperation = "!";
-          break;
-        case "inv":
+    switch (operation) {
+      case "pow":
+        btnOperation = "^";
+        break;
+      case "fact":
+        btnOperation = "!";
+        break;
+      case "inv":
+        btnOperation = "";
+        displayInput.value = inverseNumber(displayInput.value);
+        break;
+      case "clear":
+        btnOperation = "";
+        displayInput.value = "";
+        break;
+      case "bracket":
+        btnOperation = "";
+        const lastChar = displayInput.value.slice(-1);
+        displayInput.value =
+          /\D/.test(lastChar) && lastChar !== ")"
+            ? displayInput.value + "("
+            : bracketsCount.countOpen > bracketsCount.countClose
+            ? displayInput.value + ")"
+            : bracketsCount.countOpen === bracketsCount.countClose
+            ? displayInput.value + "("
+            : displayInput.value;
+        break;
+      case "del":
+        btnOperation = "";
+        displayInput.value = displayInput.value.slice(0, -1);
+        break;
+      case "div":
+        btnOperation = "/";
+        break;
+      case "asin":
+        btnOperation = "asin(";
+        break;
+      case "sin":
+        btnOperation = "sin(";
+        break;
+      case "hyperbola":
+        btnOperation = "";
+        displayInput.value = hyperbola(displayInput.value);
+        break;
+      case "mult":
+        btnOperation = "*";
+        break;
+      case "acos":
+        btnOperation = "acos(";
+        break;
+      case "cos":
+        btnOperation = "cos(";
+        break;
+      case "sqrt":
+        btnOperation = "sqrt(";
+        break;
+      case "minus":
+        btnOperation = "-";
+        break;
+      case "atan":
+        btnOperation = "atan(";
+        break;
+      case "tan":
+        btnOperation = "tan(";
+        break;
+      case "ln":
+        btnOperation = "ln(";
+        break;
+      case "plus":
+        btnOperation = "+";
+        break;
+      case "lg":
+        btnOperation = "lg(";
+        break;
+      case "pi":
+        btnOperation = "PI";
+        break;
+      case "e":
+        btnOperation = "E";
+        break;
+      case "percent":
+        btnOperation = "%";
+        break;
+      case "dot":
+        if (displayInput.value.indexOf(".") !== -1) {
           btnOperation = "";
-          displayInput.value = inverseNumber(displayInput.value);
-          break;
-        case "clear":
-          btnOperation = "";
-          displayInput.value = "";
-          break;
-        case "bracket":
-          btnOperation = "";
-          const lastChar = displayInput.value.slice(-1);
-          displayInput.value =
-            /\D/.test(lastChar) && lastChar !== ")"
-              ? displayInput.value + "("
-              : bracketsCount.countOpen > bracketsCount.countClose
-              ? displayInput.value + ")"
-              : bracketsCount.countOpen === bracketsCount.countClose
-              ? displayInput.value + "("
-              : displayInput.value;
-          break;
-        case "del":
-          btnOperation = "";
-          displayInput.value = displayInput.value.slice(0, -1);
-          break;
-        case "div":
-          btnOperation = "/";
-          break;
-        case "asin":
-          btnOperation = "asin(";
-          break;
-        case "sin":
-          btnOperation = "sin(";
-          break;
-        case "hyperbola":
-          btnOperation = "";
-          displayInput.value = hyperbola(displayInput.value);
-          break;
-        case "mult":
-          btnOperation = "*";
-          break;
-        case "acos":
-          btnOperation = "acos(";
-          break;
-        case "cos":
-          btnOperation = "cos(";
-          break;
-        case "sqrt":
-          btnOperation = "sqrt(";
-          break;
-        case "minus":
-          btnOperation = "-";
-          break;
-        case "atan":
-          btnOperation = "atan(";
-          break;
-        case "tan":
-          btnOperation = "tan(";
-          break;
-        case "ln":
-          btnOperation = "ln(";
-          break;
-        case "plus":
-          btnOperation = "+";
-          break;
-        case "lg":
-          btnOperation = "lg(";
-          break;
-        case "pi":
-          btnOperation = "PI";
-          break;
-        case "e":
-          btnOperation = "E";
-          break;
-        case "percent":
-          btnOperation = "%";
-          break;
-        case 'dot':
-          if (displayInput.value.indexOf('.') !== -1) {
-            btnOperation = "";
-          } else {
-            btnOperation = ".";
-          }
-          break;
-        case "eq":
-          btnOperation = "";
-          const countMissed =
-            bracketsCount.countOpen - bracketsCount.countClose;
-          for (let i = 0; i < countMissed; i++) {
-            displayInput.value += ")";
-          }
-          const result = calculator.calculate(displayInput.value);
-          if (result === "") {
-            displayInput.value = "Error!";
-          } else {
-            displayInput.value = result;
-          }
-          break;
-          default:
-            btnOperation = btn.target.innerText;
-            break;
-      }
+        } else {
+          btnOperation = ".";
+        }
+        break;
+      case "eq":
+        btnOperation = "";
+        const countMissed = bracketsCount.countOpen - bracketsCount.countClose;
+        for (let i = 0; i < countMissed; i++) {
+          displayInput.value += ")";
+        }
+        const result = calculator.calculate(displayInput.value);
+        if (result === "") {
+          displayInput.value = "Error!";
+        } else {
+          displayInput.value = result;
+        }
+        break;
+      default:
+        btnOperation = btn.target.innerText;
+        break;
+    }
     displayInput.value = displayInput.value + btnOperation;
     displayResult.innerHTML = calculator.calculate(displayInput.value);
   });
@@ -167,7 +166,10 @@ buttons.forEach((button) => {
 
 const handleInput = (input) => {
   const lastOperator = input.target.value.toString().slice(-1);
-  if (lastOperator === '.' && displayInput.value.slice(0, -1).indexOf('.') !== -1) {
+  if (
+    lastOperator === "." &&
+    displayInput.value.slice(0, -1).indexOf(".") !== -1
+  ) {
     displayInput.value = displayInput.value.slice(0, -1);
   }
   let current = input.target.value.toString();
