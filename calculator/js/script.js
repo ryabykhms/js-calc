@@ -165,6 +165,7 @@ buttons.forEach((button) => {
 });
 
 const handleInput = (input) => {
+  displayInput.value = displayInput.value.toLowerCase();
   const lastOperator = input.target.value.toString().slice(-1);
   if (
     lastOperator === "." &&
