@@ -159,6 +159,9 @@ buttons.forEach((button) => {
 
 const handleInput = (input) => {
   displayInput.value = displayInput.value.toLowerCase();
+  if (displayInput.value.indexOf("error") !== -1) {
+    displayInput.value = "";
+  }
   const lastOperator = input.target.value.toString().slice(-1);
   let current = input.target.value.toString();
   let result = displayResult.value;
