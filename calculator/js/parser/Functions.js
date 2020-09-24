@@ -25,6 +25,7 @@ class Functions {
     pow: args => Functions.execFunction(Math.pow, args),
     // other
     fact: args => Functions.execFunction(Functions.fact, args),
+    factFloat: args => Functions.execFunction(Functions.factFloat, args),
     percent: args => Functions.execFunction(Functions.percent, args),
   };
 
@@ -40,6 +41,13 @@ class Functions {
     for (let i = 2; i <= x; i++)
       value = value * i;
     return value;
+  }
+
+  static factFloat(x) {
+    if (x < 0) {
+      throw new Error('Factorial of negative numbers is not exists!');
+    }
+    return Math.sqrt(2 * Math.PI * x) * Math.pow((x / Math.E), x) * Math.exp(1 / (12 * x) - 1 / (360 * x * x * x));
   }
 
   static ctg(x) {

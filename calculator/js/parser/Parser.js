@@ -100,7 +100,12 @@ class Parser {
   fact() {
     const result = this.unary();
     if (this.match(TokenType.FACT)) {
-      const functionalExpression = new FunctionalExpression('fact');
+      let functionalExpression = null;
+      if (result.value.toString().indexOf('.') !== -1) {
+        functionalExpression = new FunctionalExpression('factFloat');
+      } else {
+        functionalExpression = new FunctionalExpression('fact');
+      }
       functionalExpression.addArgument(result);
       return functionalExpression;
     }
