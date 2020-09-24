@@ -33,6 +33,9 @@ class Functions {
   }
 
   static fact(x) {
+    if (x < 0) {
+      throw new Error('Factorial of negative numbers is not exists!');
+    }
     let value=1;
     for (let i = 2; i <= x; i++)
       value = value * i;
