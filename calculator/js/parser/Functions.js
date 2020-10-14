@@ -5,7 +5,7 @@ class Functions {
     // trigonometric
     sin: args => Functions.execFunction(Math.sin, args),
     cos: args => Functions.execFunction(Math.cos, args),
-    tg: args => Functions.execFunction(Math.tan, args),
+    tan: args => Functions.execFunction(Math.tan, args),
     ctg: args => Functions.execFunction(Functions.ctg, args),
     asin: args => Functions.execFunction(Math.asin, args),
     acos: args => Functions.execFunction(Math.acos, args),

@@ -180,3 +180,9 @@ h6 {
   background-color: rgb(255, 253, 147);
   font-size: 2rem;
 }
+
+@media (max-width: 768px) {
+  .calculator {
+    width: 90%;
+  }
+}
