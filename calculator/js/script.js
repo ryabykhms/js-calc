@@ -44,6 +44,7 @@ const hyperbola = (str) => {
 const buttons = document.querySelectorAll(".button");
 const displayResult = document.querySelector(".display__result");
 const displayInput = document.querySelector(".display__input");
+let prevOperation = "";
 buttons.forEach((button) => {
   button.addEventListener("click", (btn) => {
     let btnOperation = "";
@@ -136,6 +137,7 @@ buttons.forEach((button) => {
         btnOperation = "%";
         break;
       case "eq":
+        prevOperation = "eq";
         btnOperation = "";
         const countMissed = bracketsCount.countOpen - bracketsCount.countClose;
         for (let i = 0; i < countMissed; i++) {
@@ -149,9 +151,14 @@ buttons.forEach((button) => {
         }
         break;
       default:
+        if (prevOperation === "eq") {
+          console.log('eq');
+          displayInput.value = "";
+        }
         btnOperation = btn.target.innerText;
         break;
     }
+    prevOperation = btnOperation === '' ? 'eq' : btnOperation;
     displayInput.value = displayInput.value + btnOperation;
     displayResult.innerHTML = calculator.calculate(displayInput.value);
   });
@@ -171,9 +178,15 @@ const handleInput = (input) => {
     current = current.substr(0, current.length - 1);
   }
   if (equalPosition !== -1) {
-    current = current.slice(0, equalPosition) + current.slice(equalPosition+1);
+    current =
+      current.slice(0, equalPosition) + current.slice(equalPosition + 1);
   }
-  if (lastOperator === "=" || input.key === "Enter" || input.keyCode === 13 || equalPosition !== -1) {
+  if (
+    lastOperator === "=" ||
+    input.key === "Enter" ||
+    input.keyCode === 13 ||
+    equalPosition !== -1
+  ) {
     const resultCalc = calculator.calculate(current);
     if (resultCalc !== "Error") {
       current = resultCalc;
