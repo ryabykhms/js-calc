@@ -91,9 +91,15 @@ buttons.forEach((button) => {
         btnOperation = "/";
         break;
       case "asin":
+        if (prevOperation === "eq") {
+          displayInput.value = "";
+        }
         btnOperation = "asin(";
         break;
       case "sin":
+        if (prevOperation === "eq") {
+          displayInput.value = "";
+        }
         btnOperation = "sin(";
         break;
       case "hyperbola":
@@ -104,36 +110,63 @@ buttons.forEach((button) => {
         btnOperation = "*";
         break;
       case "acos":
+        if (prevOperation === "eq") {
+          displayInput.value = "";
+        }
         btnOperation = "acos(";
         break;
       case "cos":
+        if (prevOperation === "eq") {
+          displayInput.value = "";
+        }
         btnOperation = "cos(";
         break;
       case "sqrt":
+        if (prevOperation === "eq") {
+          displayInput.value = "";
+        }
         btnOperation = "sqrt(";
         break;
       case "minus":
         btnOperation = "-";
         break;
       case "atan":
+        if (prevOperation === "eq") {
+          displayInput.value = "";
+        }
         btnOperation = "atan(";
         break;
       case "tan":
+        if (prevOperation === "eq") {
+          displayInput.value = "";
+        }
         btnOperation = "tan(";
         break;
       case "ln":
+        if (prevOperation === "eq") {
+          displayInput.value = "";
+        }
         btnOperation = "ln(";
         break;
       case "plus":
         btnOperation = "+";
         break;
       case "lg":
+        if (prevOperation === "eq") {
+          displayInput.value = "";
+        }
         btnOperation = "lg(";
         break;
       case "pi":
+        if (prevOperation === "eq") {
+          displayInput.value = "";
+        }
         btnOperation = "PI";
         break;
       case "e":
+        if (prevOperation === "eq") {
+          displayInput.value = "";
+        }
         btnOperation = "E";
         break;
       case "percent":
