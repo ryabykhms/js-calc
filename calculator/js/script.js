@@ -69,6 +69,9 @@ buttons.forEach((button) => {
         displayInput.value = "";
         break;
       case "bracket":
+        if (prevOperation === "eq") {
+          displayInput.value = "";
+        }
         btnOperation = "";
         const lastChar = displayInput.value.slice(-1);
         displayInput.value =
@@ -138,7 +141,7 @@ buttons.forEach((button) => {
         break;
       case "eq":
         prevOperation = "eq";
-        btnOperation = "";
+        btnOperation = "eq";
         const countMissed = bracketsCount.countOpen - bracketsCount.countClose;
         for (let i = 0; i < countMissed; i++) {
           displayInput.value += ")";
@@ -152,13 +155,13 @@ buttons.forEach((button) => {
         break;
       default:
         if (prevOperation === "eq") {
-          console.log('eq');
           displayInput.value = "";
         }
         btnOperation = btn.target.innerText;
         break;
     }
-    prevOperation = btnOperation === '' ? 'eq' : btnOperation;
+    prevOperation = btnOperation;
+    btnOperation = btnOperation === 'eq' ? '' : btnOperation;
     displayInput.value = displayInput.value + btnOperation;
     displayResult.innerHTML = calculator.calculate(displayInput.value);
   });
